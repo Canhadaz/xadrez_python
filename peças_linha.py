@@ -61,8 +61,10 @@ def movimento_torre(tabuleiro, movimento, lado):
     # inicio = movimento[0][0]
     # chegada = movimento[0][1]
     # aqui a diagonal não precisa ser perfeita, ela apenas precisa indicar que não é horizontal e nem vertical
-    mov_diagonal = movimento[0][0] != movimento[1][0] and movimento[0][1] != movimento[1][1]
-
+    mov_diagonal = (movimento[0][0] != movimento[1][0] and movimento[0][1] != movimento[1][1]) 
+    # para caso as coordenadas sejam iguais em ambos os casos
+    mov_nulo = (movimento[0][0] == movimento[1][0] and movimento[0][1] == movimento[1][1])
+    
     peça = ['♜ ', '♖ ']
 
     # pega as posições existentes da peça selecionada
@@ -74,8 +76,8 @@ def movimento_torre(tabuleiro, movimento, lado):
         print('\033[31mPOSIÇÃO ERRADA!\033[0m')
         return False
 
-    if mov_diagonal:
-        print('\033[31mMOVIMENTO NÃO PODE SER DIAGONAL!\033[0m')
+    if (mov_diagonal or mov_nulo):
+        print('\033[31mMOVIMENTO NÃO PODE SER DIAGONAL OU NULO!\033[0m')
         return False
 
     if not mesma_cor(tabuleiro, movimento, lado):

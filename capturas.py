@@ -1,6 +1,9 @@
 #impedir captura de peça da mesma cor
 #permitir capturar apenas peças adversárias
 #atualizar corretamente o tabuleiro após a captura
+PEÇA_BRANCA = ['♟ ', '♜ ', '♞ ', '♝ ', '♛ ', '♚ ']
+PEÇA_PRETA = ['♙ ', '♖ ', '♘ ', '♗ ', '♕ ', '♔ ']
+
 def capturar_peça(tabuleiro, movimento, lado, peça, parada):
     casa = 0
 
@@ -37,17 +40,14 @@ def captura_permitida(tabuleiro, movimento, lado, linha, coluna):
     # mov_diagonal = (abs(diferença_linha) == abs(diferença_col)) and diferença_linha != 0
     # passo_linha = 1 if movimento[1][0] > movimento[0][0] else -1
     # passo_col = 1 if movimento[1][1] > movimento[0][1] else -1
-    
-    peça_branca = ['♟ ', '♜ ', '♞ ', '♝ ', '♛ ', '♚ ']
-    peça_preta = ['♙ ', '♖ ', '♘ ', '♗ ', '♕ ', '♔ ']
 
     if tabuleiro[linha][coluna] in ('⬜', '⬛'):
         return True
 
-    if lado == True and tabuleiro[linha][coluna] in peça_branca:
+    if lado == True and tabuleiro[linha][coluna] in PEÇA_BRANCA:
         return False
 
-    if lado == False and tabuleiro[linha][coluna] in peça_preta:
+    if lado == False and tabuleiro[linha][coluna] in PEÇA_PRETA:
         return False
 
     return (linha, coluna)
@@ -63,17 +63,15 @@ def captura_permitida(tabuleiro, movimento, lado, linha, coluna):
     #     return True
 
 def mesma_cor(tabuleiro, movimento, lado):
-    peça_branca = ['♟ ', '♜ ', '♞ ', '♝ ', '♛ ', '♚ ']
-    peça_preta = ['♙ ', '♖ ', '♘ ', '♗ ', '♕ ', '♔ ']
 
     #ultima posição da peça
     chegada = tabuleiro[movimento[1][0]][movimento[1][1]]
     #caso a localização final da peça seja numa peça aliada, ele interrompe a função  
-    if lado == True and chegada in peça_branca:
+    if lado == True and chegada in PEÇA_BRANCA:
         print('\033[31mNÃO É POSSÍVEL CAPTURAR UMA PEÇA ALIADA!\033[0m')
         return False
     
-    elif lado == False and chegada in peça_preta:
+    elif lado == False and chegada in PEÇA_PRETA:
         print('\033[31mNÃO É POSSÍVEL CAPTURAR UMA PEÇA ALIADA!\033[0m')
         return False
 

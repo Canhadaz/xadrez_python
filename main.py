@@ -6,8 +6,6 @@ def main():
     colunas = ['A','B','C','D','E','F','G','H']
     tabuleiro = criar_tabuleiro()
 
-    rodada_branca = 0
-    rodada_preta = 0
     while True:
 
         print('\nBRANCO:') if lado == True else print('\nPRETO:')
