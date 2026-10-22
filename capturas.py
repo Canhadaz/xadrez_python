@@ -21,25 +21,13 @@ def capturar_peça(tabuleiro, movimento, lado, peça, parada):
                 else:
                     tabuleiro[n][i] = '⬜' if  casa %2 != 0 else '⬛'
 
-    # caso a peça que foi capturada seja o rei ele retorna end_game
-    # que é usado para finalizar o jogo, considerando que ja foi chamada a
-    # função mesma_cor(), eu não preciso colocar uma condição para cada cor
-    # usei o valor '1' e não True or False, pois isso facilita
-    # quando vou fazer as condições dos valores retornados, visto que
-    # essa função ja tem outros retornos em valores booleanos
+    # caso a peça capturada seja o rei, o jogo é encerrado.
     if capturada in ('♚ ', '♔ '):
         return 'fim'
     
     return True     
 
 def captura_permitida(tabuleiro, movimento, lado, linha, coluna):
-    # diferença_linha = movimento[0][0] - movimento[1][0]
-    # diferença_col = movimento[0][1] - movimento[1][1]
-    # mov_vertical = (diferença_linha != 0) and (diferença_col == 0)
-    # mov_horizontal = (diferença_col != 0) and (diferença_linha == 0)    
-    # mov_diagonal = (abs(diferença_linha) == abs(diferença_col)) and diferença_linha != 0
-    # passo_linha = 1 if movimento[1][0] > movimento[0][0] else -1
-    # passo_col = 1 if movimento[1][1] > movimento[0][1] else -1
 
     if tabuleiro[linha][coluna] in ('⬜', '⬛'):
         return True
@@ -51,16 +39,6 @@ def captura_permitida(tabuleiro, movimento, lado, linha, coluna):
         return False
 
     return (linha, coluna)
-
-    # #ultima posição da peça
-    # chegada = tabuleiro[movimento[1][0]][movimento[1][1]]
-    # #caso a localização final da peça seja numa peça aliada, ele interrompe a função  
-    # if lado == True and chegada not in peça_branca:
-    #     print('\033[32mPEÇA ADVERSÁRIA CAPTURADA!\033[0m')
-    #     return True
-    # elif lado == False and chegada not in peça_preta:
-    #     print('\033[32mPEÇA ADVERSÁRIA CAPTURADA!\033[0m')
-    #     return True
 
 def mesma_cor(tabuleiro, movimento, lado):
 

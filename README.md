@@ -2,9 +2,14 @@
 Projeto de lógica de programação do jogo xadrez, desenvolvido inteiramente em Python.
 
 inicie o código por:
-    main.py
 
-- main.py: 
+    --> main.py
+
+forneça as coordenadas da peça que será movimentada.
+- linha um valor numérico dentre [1 - 8]
+- coluna um valor caractere dentre ['A','B','C','D','E','F','G','H']
+
+# main.py: 
 
 def main():
     --> arquivo inicial do projeto, ele faz a primeira chamada da função
@@ -45,7 +50,7 @@ def main():
     primeira, o valor de coluna é '0', caso seja a ultima, valor retornado é
     igual a '7'.
 
-- tabuleiro.py:
+# tabuleiro.py:
 
 def criar_tabuleiro():
     --> sendo essa a primeira função chamada por 'main.py', como o nome ja
@@ -122,7 +127,7 @@ def mover_peça():
     --> em sequência é chamada a função 'controlar_turno()', que vai retornar
     o valor, que será atribuido ao lado atual.
 
-- peças_linha.py
+# peças_linha.py
     --> arquivo esse, um pouco mais complexo, com objetivo de garantir a
     movimentação correta das peças --> torre; bispo e dama, visto que ambas
     essas se movimentam apenas em linhas (movimentos verticais, horizontais e
@@ -229,4 +234,72 @@ def movimento_dama():
     é retornado False, junto da exibição de erro e eventualmente é requisitado
     os dados para o usuário novamente.
 
-- capturas.py:
+# capturas.py:
+    --> este arquivo tem como objetivo garantir que a captura das peças
+    adversárias ocorra sem erros. Além de desenvolver as funções de movimento
+    do rei e do cavalo.
+
+    --> inicia com a criação das constantes globais - uma lista com os
+    caracteres de cada peça do tabuleiro, usada para verificar se as
+    peças da casa atual, com as peças da lista.
+
+def capturar_peça()
+    --> essa função é a etapa final da captura de peças, ela só é
+    chamada depois que as funções 'mesma_cor()' e 'capturar_peça()'
+    já retornaram valores valídos.
+
+    --> ela faz a atualização do tabuleiro, faz com que ele continue formatado
+    de maneira correta, usando a mesma lógica da função 'criar_tabuleiro()', ele
+    recebe como parâmetro a variavel parada, que faz com que caso as coordenadas
+    de movimento final atravessem uma peça adversária, a peça selecionada pare de
+    se movimentar, parando onde ocorreu a captura.
+
+    --> caso a peça que foi capturada seja o rei ele retorna end_game que é
+    usado para finalizar o jogo, considerando que ja foi chamada a função
+    mesma_cor(), eu não preciso colocar uma condição para cada cor usei o
+    valor '1' e não True or False, pois isso facilita quando vou fazer as
+    condições dos valores retornados, visto que essa função ja tem outros
+    retornos em valores booleanos
+
+def captura_permitida():
+    --> segunda função a ser chamada, para verificar se a peça à ser capturada
+    é adversária, caso essa condição seja condição seja falsa, é retornado False,
+    caso a coordenada final esteja dentro de ('⬜', '⬛'), é retornado True.
+
+    --> por fim, caso a coordenada final, não esteja não esteja em nenhuma das
+    condições acima, é retornado 'linha' e 'coluna', que tem o valor das 
+    coordenadas finais do movimento. Isso tem como funcionalidade, a exibição
+    do print('\033[32mPEÇA ADVERSÁRIA CAPTURADA!\033[0m').
+
+def mesma_cor():
+    --> primeira função a ser chamada, para verificar se a peça à ser capturada
+    não é da mesma cor, caso essa confição seja falsa é retornado o valor False
+    e o print('\033[31mNÃO É POSSÍVEL CAPTURAR UMA PEÇA ALIADA!\033[0m'),
+    refazendo as requisições dos inputs para o usuário.
+
+def movimento_rei():
+    --> também possui uma estrutura de código muito semelhante, com as funções
+    de movimento anteriores, as variaveis booleanas de movimento, garantem os
+    movimentos verticais, horizontais e diagonais de apenas uma casa.
+
+    --> caso nenhuma das variaveis sejam verdadeiras é retornado false, e feito
+    outra requisição dos dados ao usuário.
+
+    --> nessa função não é chamada a função 'caminho_livre()', pois o movimento
+    é de apenas uma casa, tirando assim a necessidade de verificar as peças
+    intermediarias do movimento. O resto desta função é semelhante as funções
+    de movimento já abordadas no README.    
+
+def movimento_cavalo():
+    --> a estrutura desta função também é semelhante as outras de movimento,
+    as principais diferenças são observadas nas variaveis de movimento.
+
+    --> essa função possui uma lógica de movimento ainda não abordada no código,
+    elas verificam os valores absolutos das variaveis 'diferença_linha' e 
+    'diferença_col', com o objetivo de garantir, que o movimento realizado tem o
+    formato de 'L', o movimento horizontal do cavalo verifica se o movimento é
+    igual a um 'L' deitado.
+
+# peão.py
+
+
