@@ -1,5 +1,6 @@
 from capturas import captura_permitida, capturar_peça, mesma_cor
 
+# verifica as casas intermediarias do movimento
 def caminho_livre(tabuleiro: list, movimento: list, lado: bool) -> bool:
     diferença_linha = movimento[1][0] - movimento[0][0]
     diferença_col = movimento[1][1] - movimento[0][1]
@@ -9,12 +10,14 @@ def caminho_livre(tabuleiro: list, movimento: list, lado: bool) -> bool:
     
     mov_diagonal = (abs(diferença_linha) == abs(diferença_col)) and diferença_linha != 0
 
+    # garante que linha e coluna tenham apenas o valor das casas intermediarias
     passo_linha = 1 if diferença_linha > 0 else -1 if diferença_linha < 0 else 0
     passo_col = 1 if diferença_col > 0 else -1 if diferença_col < 0 else 0  
     
     linha = movimento[0][0] + passo_linha
     coluna = movimento[0][1] + passo_col
 
+    # caso não seja nenhum movimento valido ele retorna False
     if not (mov_vertical or mov_horizontal or mov_diagonal):
         print('\033[31mDigite um movimento válido!\033[0m')
         return False
@@ -44,6 +47,7 @@ def caminho_livre(tabuleiro: list, movimento: list, lado: bool) -> bool:
     return True
     
 def movimento_torre(tabuleiro: list, movimento: list, lado: bool) -> bool:
+    #import dentro da função para evitar o ciclo das funções
     from tabuleiro import posição_valida
     # inicio = movimento[0][0]
     # chegada = movimento[0][1]
@@ -82,7 +86,7 @@ def movimento_torre(tabuleiro: list, movimento: list, lado: bool) -> bool:
     else:
         parada = output
         print('\033[32mPEÇA ADVERSÁRIA CAPTURADA!\033[0m')
-
+    # finaliza o jogo
     end_game = capturar_peça(tabuleiro, movimento, lado, peça, parada)
     if end_game == 'fim':
         print('\n\033[32mLADO BRANCO VENCEU!\033[0m') if lado == True else print('\n\033[32mLADO PRETO VENCEU!\033[0m')

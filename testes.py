@@ -8,6 +8,7 @@ from tabuleiro import criar_tabuleiro
 # o assert caso errado exibe erro no teste exato que ele parou
 # todas as peças foram testadas
 
+# movimento valido da torre
 def teste_torre_valido():
     tabuleiro = criar_tabuleiro()
     tabuleiro[2][0] = '♜ '
@@ -19,6 +20,7 @@ def teste_torre_valido():
 
     print("Teste 1: torre com movimento válido - OK")
 
+# movimento diagonal da torre
 def teste_torre_diagonal():
     tabuleiro = criar_tabuleiro()
     tabuleiro[4][0] = '♜ '
@@ -30,6 +32,7 @@ def teste_torre_diagonal():
 
     print("Teste 2: torre com movimento diagonal - OK")
 
+# movimento da função caminho_livre()
 def teste_torre_bloqueado():
     tabuleiro = criar_tabuleiro()
 
@@ -40,6 +43,7 @@ def teste_torre_bloqueado():
 
     print("Teste 3: torre com caminho bloqueado - OK")
 
+# movimento da diagonal do bispo
 def teste_bispo_valido():
     tabuleiro = criar_tabuleiro()
     tabuleiro[5][1] = '♝ '
@@ -51,6 +55,7 @@ def teste_bispo_valido():
 
     print("Teste 4: bispo com movimento válido - OK")
 
+# movimento do movimento da dama
 def teste_dama_valido():
     tabuleiro = criar_tabuleiro()
     tabuleiro[6][0] = '♛ '
@@ -62,6 +67,7 @@ def teste_dama_valido():
 
     print("Teste 5: dama com movimento válido - OK")
 
+# movimento da dama com diagonal imperfeita
 def teste_dama_invalido():
     tabuleiro = criar_tabuleiro()
     tabuleiro[6][0] = '♛ '
@@ -73,6 +79,7 @@ def teste_dama_invalido():
 
     print("Teste 6: dama com movimento inválido - OK")
 
+# movimento do cavalo
 def teste_cavalo_valido():
     tabuleiro = criar_tabuleiro()
 
@@ -82,6 +89,8 @@ def teste_cavalo_valido():
     assert tabuleiro[2][2] == '♞ '
 
     print('Teste 7: cavalo com movimento válido - OK')
+
+# movimento do calo da vertical perfeita
 def teste_cavalo_invalido():
     tabuleiro = criar_tabuleiro()
 
@@ -92,6 +101,7 @@ def teste_cavalo_invalido():
 
     print('Teste 8: cavalo com movimento inválido - OK')
 
+# movimento rei valido
 def teste_rei_valido():
     tabuleiro = criar_tabuleiro()
     tabuleiro[2][3] = '♚ '
@@ -103,6 +113,7 @@ def teste_rei_valido():
 
     print('Teste 9: rei com movimento valido - OK')
 
+# movimento rei com peça no meio
 def teste_rei_bloqueado():
     tabuleiro = criar_tabuleiro()
 
@@ -113,6 +124,7 @@ def teste_rei_bloqueado():
 
     print('Teste 10: rei com movimento valido - OK')
 
+# movimento do peão de duas casas
 def teste_peão_valido():
     tabuleiro = criar_tabuleiro()
 
@@ -123,6 +135,7 @@ def teste_peão_valido():
 
     print('Teste 11: peão com movimento valido - OK')
 
+# movimento do peão retrogrado
 def teste_peão_invalido():
     tabuleiro = criar_tabuleiro()
     tabuleiro[3][0] = '♟ '

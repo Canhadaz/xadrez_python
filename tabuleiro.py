@@ -2,12 +2,13 @@ from peças_linha import movimento_torre, movimento_bispo, movimento_dama
 from capturas import movimento_rei, movimento_cavalo
 from peão import movimento_peão, controlar_turno
 
+# controla a chamada de todas as peças do tabuleiro
 def mover_peca(peça: list, inicio: list, chegada: list, tabuleiro: list, lado: bool) -> bool:
     movimento = []
     movimento.append(inicio)
     movimento.append(chegada)
     match(peça):
-        #peão --> 50%
+        #peão --> 100%
         case 1:
             movimento_valido = movimento_peão(tabuleiro, movimento, lado) == True
             lado = controlar_turno(lado, movimento_valido)

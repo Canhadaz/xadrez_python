@@ -1,9 +1,12 @@
 #impedir captura de peça da mesma cor
 #permitir capturar apenas peças adversárias
 #atualizar corretamente o tabuleiro após a captura
+
+# valores globais
 PEÇA_BRANCA = ['♟ ', '♜ ', '♞ ', '♝ ', '♛ ', '♚ ']
 PEÇA_PRETA = ['♙ ', '♖ ', '♘ ', '♗ ', '♕ ', '♔ ']
 
+# atualiza o tabuleiro, conforme o movimento do usuário
 def capturar_peça(tabuleiro: list, movimento: list, lado: bool, peça: list, parada: list) -> bool:
     casa = 0
 
@@ -11,7 +14,7 @@ def capturar_peça(tabuleiro: list, movimento: list, lado: bool, peça: list, pa
     capturada = tabuleiro[parada[0]][parada[1]]
 
     tabuleiro[parada[0]][parada[1]] = (peça[0] if lado == True else peça[1])
-    
+    # usa mesma lógica da função criar_tabuleiro()
     for n in range(8):
         for i in range(8):
             casa += 1
@@ -26,12 +29,12 @@ def capturar_peça(tabuleiro: list, movimento: list, lado: bool, peça: list, pa
         return 'fim'
     
     return True     
-
+# verifica se a coordenada de chegada, está valida dentro dos padrões do xadrez
 def captura_permitida(tabuleiro: list, movimento: list, lado: bool, linha: list, coluna: list) -> bool:
 
     if tabuleiro[linha][coluna] in ('⬜', '⬛'):
         return True
-
+    # ve se a coordenada está dentre a lista de peças
     if lado == True and tabuleiro[linha][coluna] in PEÇA_BRANCA:
         return False
 
@@ -39,7 +42,7 @@ def captura_permitida(tabuleiro: list, movimento: list, lado: bool, linha: list,
         return False
 
     return (linha, coluna)
-
+# verifica se a coordenada de chegada é uma peça de mesma cor
 def mesma_cor(tabuleiro: list, movimento: list, lado: list) -> bool:
 
     #ultima posição da peça
@@ -114,6 +117,7 @@ def movimento_cavalo(tabuleiro: list, movimento: list, lado: bool) -> bool:
     diferença_linha = movimento[0][0] - movimento[1][0]
     diferença_col = movimento[0][1] - movimento[1][1]
 
+    # a diferença de linha é sempre = 2 e coluna 1 OU ao contrário
     mov_ver_cavalo = (abs(diferença_linha) == 2) and (abs(diferença_col) == 1)
     mov_hor_cavalo = (abs(diferença_linha) == 1) and (abs(diferença_col) == 2)
     
@@ -121,7 +125,7 @@ def movimento_cavalo(tabuleiro: list, movimento: list, lado: bool) -> bool:
     coluna = movimento[1][1]
 
     posicao = posição_valida(tabuleiro, movimento, peça, lado)
-
+    # mesma estrutura das outras funções de movimento
     print(f'POSIÇÃO = {posicao}')
     if movimento[0] not in posicao:
         print('\033[31mPOSIÇÃO ERRADA!\033[0m')
