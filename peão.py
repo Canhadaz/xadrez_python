@@ -1,17 +1,17 @@
 from capturas import mesma_cor, captura_permitida, capturar_peça
 
 # funções meio inuteis, mas adicionei por conta do enunciado
-def trocar_turno(lado):
+def trocar_turno(lado: bool) -> bool:
     return not lado
 
-def controlar_turno(lado, movimento_valido):
+def controlar_turno(lado: bool, movimento_valido: bool) -> bool:
     
     if movimento_valido:
         return trocar_turno(lado)
     
     return lado
 
-def movimento_peão(tabuleiro, movimento, lado):
+def movimento_peão(tabuleiro: list, movimento: list, lado: bool) -> bool:
     from tabuleiro import posição_valida
 
     peça = ['♟ ', '♙ ']

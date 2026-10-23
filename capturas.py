@@ -4,7 +4,7 @@
 PEÇA_BRANCA = ['♟ ', '♜ ', '♞ ', '♝ ', '♛ ', '♚ ']
 PEÇA_PRETA = ['♙ ', '♖ ', '♘ ', '♗ ', '♕ ', '♔ ']
 
-def capturar_peça(tabuleiro, movimento, lado, peça, parada):
+def capturar_peça(tabuleiro: list, movimento: list, lado: bool, peça: list, parada: list) -> bool:
     casa = 0
 
     # pega a peça que vai ser capturada, antes das iterações

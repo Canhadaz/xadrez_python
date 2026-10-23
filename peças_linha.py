@@ -1,6 +1,6 @@
 from capturas import captura_permitida, capturar_peça, mesma_cor
 
-def caminho_livre(tabuleiro, movimento, lado):
+def caminho_livre(tabuleiro: list, movimento: list, lado: bool) -> bool:
     diferença_linha = movimento[1][0] - movimento[0][0]
     diferença_col = movimento[1][1] - movimento[0][1]
 
@@ -43,20 +43,7 @@ def caminho_livre(tabuleiro, movimento, lado):
 
     return True
     
-    #verifica se a casa atual esta em ('⬜', '⬛')
-    # validação_casas = (tabuleiro[linha][coluna] not in ('⬜', '⬛')) 
-    
-    #caso o lado seja branco ele checa se a peça atual não é uma peça preta
-    #caso seja preta ele 'elimina' ela, e retorna True, para que a peça pare de se mover
-    # lado_branco = (tabuleiro[linha][coluna] not in peça_preta)
-    
-    #caso o lado seja preto ele checa se a peça atual não é uma peça branca
-    #caso seja branca ele 'elimina' ela, e retorna True, para que a peça pare de se mover
-    # lado_preto = (tabuleiro[linha][coluna] not in peça_branca)
-    
-    # coloquei nos comandos de repetição, para que ele sempre atualize as posições atuais
-
-def movimento_torre(tabuleiro, movimento, lado):
+def movimento_torre(tabuleiro: list, movimento: list, lado: bool) -> bool:
     from tabuleiro import posição_valida
     # inicio = movimento[0][0]
     # chegada = movimento[0][1]
@@ -102,7 +89,7 @@ def movimento_torre(tabuleiro, movimento, lado):
         exit()
     return True
 
-def movimento_bispo(tabuleiro, movimento, lado):
+def movimento_bispo(tabuleiro: list, movimento: list, lado: bool) -> bool:
     from tabuleiro import posição_valida
 
     peça = ['♝ ', '♗ ']
@@ -147,7 +134,7 @@ def movimento_bispo(tabuleiro, movimento, lado):
         exit()
     return True
 
-def movimento_dama(tabuleiro, movimento, lado):
+def movimento_dama(tabuleiro: list, movimento: list, lado: bool) -> bool:
     from tabuleiro import posição_valida
 
     peça = ['♛ ', '♕ ']

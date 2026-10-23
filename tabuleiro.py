@@ -2,7 +2,7 @@ from peças_linha import movimento_torre, movimento_bispo, movimento_dama
 from capturas import movimento_rei, movimento_cavalo
 from peão import movimento_peão, controlar_turno
 
-def mover_peca(peça, inicio, chegada, tabuleiro, lado):
+def mover_peca(peça: list, inicio: list, chegada: list, tabuleiro: list, lado: bool) -> bool:
     movimento = []
     movimento.append(inicio)
     movimento.append(chegada)
@@ -35,7 +35,7 @@ def mover_peca(peça, inicio, chegada, tabuleiro, lado):
     return lado
 
 # pega as posições existentes da peça selecionada
-def posição_valida(tabuleiro, movimento, peça, lado):
+def posição_valida(tabuleiro: list, movimento: list, peça: list, lado: bool) -> list:
     print(movimento)
     posicao = []
 
@@ -50,7 +50,7 @@ def posição_valida(tabuleiro, movimento, peça, lado):
 
     return posicao
 
-def criar_tabuleiro():
+def criar_tabuleiro() -> list:
     tabuleiro = []
     #variavel da casa do tabuleiro (usei para criar a posição das peças)
     #a cada iteração (64 iterações na criação), o valor dele é aumentado e eventualmente
@@ -104,7 +104,7 @@ def criar_tabuleiro():
     
     return tabuleiro
 
-def mostrar_tabuleiro(tabuleiro):
+def mostrar_tabuleiro(tabuleiro: list):
     
     #print('TABULEIRO 8X8 XADREZ\n')
     for i in range(8):
