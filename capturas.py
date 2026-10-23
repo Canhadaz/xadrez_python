@@ -27,7 +27,7 @@ def capturar_peça(tabuleiro: list, movimento: list, lado: bool, peça: list, pa
     
     return True     
 
-def captura_permitida(tabuleiro, movimento, lado, linha, coluna):
+def captura_permitida(tabuleiro: list, movimento: list, lado: bool, linha: list, coluna: list) -> bool:
 
     if tabuleiro[linha][coluna] in ('⬜', '⬛'):
         return True
@@ -40,7 +40,7 @@ def captura_permitida(tabuleiro, movimento, lado, linha, coluna):
 
     return (linha, coluna)
 
-def mesma_cor(tabuleiro, movimento, lado):
+def mesma_cor(tabuleiro: list, movimento: list, lado: list) -> bool:
 
     #ultima posição da peça
     chegada = tabuleiro[movimento[1][0]][movimento[1][1]]
@@ -55,7 +55,7 @@ def mesma_cor(tabuleiro, movimento, lado):
 
     return True
 
-def movimento_rei(tabuleiro, movimento, lado):
+def movimento_rei(tabuleiro: list, movimento: list, lado: bool) -> bool:
     from tabuleiro import posição_valida
 
     peça = ['♚ ', '♔ ']
@@ -106,7 +106,7 @@ def movimento_rei(tabuleiro, movimento, lado):
         print('\n\033[31mUM REI NÃO PODE DAR XEQUE-MATE EM OUTRO REI!\033[0m')
     return True
 
-def movimento_cavalo(tabuleiro, movimento, lado):
+def movimento_cavalo(tabuleiro: list, movimento: list, lado: bool) -> bool:
     from tabuleiro import posição_valida
 
     peça = ['♞ ', '♘ ']

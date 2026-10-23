@@ -361,3 +361,36 @@ def controlar_turno():
     --> caso o movimento valido, o turno é alterado, caso contrario o return é
     o valor original de lado, e eventualmente as requisições ao usuário são
     realizadas novamente sem alterar o turno.
+
+# testes.py
+    --> arquivo esse feito para testar as possibilidades de falha do código, caso
+    todas as funcionalidades sejam testadas e exibidas suas respectivas mensagens de
+    feedback, o código esta funcionando da maneira ideal. Na primeira falha o assert
+    interrompe a execução do código, facilitando saber onde cada esta cada erro.
+
+    --> é testada o movimento de cada peça, a função caminho_livre(), o peão andando
+    duas casas na primeira jogada, o peão não podendo ir para tras. 
+
+    --> o movimento de cada peça é testado a partir do padrão de movimento de cada
+    uma delas, no caso do cavalo, é testado se é no formato de 'L' ou não.
+
+```python
+def teste_cavalo_valido():
+    tabuleiro = criar_tabuleiro()
+
+    movimento = [(0,1),(2,2)]
+
+    assert movimento_cavalo(tabuleiro, movimento, True) is True
+    assert tabuleiro[2][2] == '♞ '
+
+    print('Teste 7: cavalo com movimento válido - OK')
+def teste_cavalo_invalido():
+    tabuleiro = criar_tabuleiro()
+
+    movimento = [(0, 1), (2, 1)]
+
+    assert movimento_cavalo(tabuleiro, movimento, True) is False
+    assert tabuleiro[0][1] == '♞ '
+
+    print('Teste 8: cavalo com movimento inválido - OK')
+```
