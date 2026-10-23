@@ -50,6 +50,10 @@ def main():
     primeira, o valor de coluna é '0', caso seja a ultima, valor retornado é
     igual a '7'.
 
+```python
+    linha = 8 - linha
+    col = ord(col) - ord('A')
+```
 # tabuleiro.py:
 
 def criar_tabuleiro():
@@ -88,6 +92,11 @@ def mostrar_tabuleiro():
     por iteração, ao lado uma sequencia de valores numéricos que fazem juz ao
     valor de cada linha, e um 'print' final, com a exibição dos caracteres de
     cada coluna. 
+```python
+    for i in range(8):
+        print(f'{8 - i}|',''.join(tabuleiro[i]))
+    print('  -----------------\n   A B C D E F G H')
+```
 
 def posição_valida():
     --> recebe de parametro a matriz 'tabuleiro' a lista das coordenadas
@@ -301,5 +310,54 @@ def movimento_cavalo():
     igual a um 'L' deitado.
 
 # peão.py
+    --> arquivo esse que possui como objetivo principal, gerenciar o movimento
+    do peão, sendo a peça com maior quantidade de requisitos para movimentação.
 
+def movimento_peão():
+    --> o peão ele possui uma serie de caracteristicas unicas de movimento, sendo
+    elas a capacidade de se mover apenas para frente quando movimento possui como
+    objetivo apenas a movimentação, movimento diagonal apenas quando for capturar
+    uma peça adversária, ele não pode se movimentar para trás e na primeira
+    jogada ele pode se mover 2 peças para frente.
 
+    --> a função tem que cumprir todos esses requisitos, portanto é verificado
+    se as variaveis diferença_linha e diferença_col possuem um valor igual a 1 ou
+    2, caso o valor seja diferente de qualquer um destes números, é impedido o
+    movimento da peça.
+
+    --> a condição para verificar se o peão pode se movimentar 2 casas, é True
+    quando o peão está na segunda linha de cada lado do tabuleiro, visto que o
+    peão se movimenta apenas para frente, portanto o peão só vai estar na segunda
+    linha, quando este não tiver se movido ainda.
+
+    --> caso não seja seu primeiro movimento, é exibido a mensagem de erro
+    print('\033[31mO PEÃO NÃO PODE MAIS AVANÇAR DUAS CASAS!\033[0m') e retornado
+    False, fazendo uma nova requisição dos dados fornecidos pelo usuário.
+
+    --> esta função também não possui a chamada da função caminho livre, visto que
+    esta função só seria utilizada em uma situação muito específica (movimento de
+    2 casas), porém é utilizada uma lógica semelhante, como demonstrado no trecho
+    do código a seguir:
+
+```python    
+    if tabuleiro[linha_intermediaria][movimento[0][1]] not in ('⬜', '⬛'):
+        print('\033[31mO PEÃO NÃO PODE AVANÇAR!\033[0m')
+        return False
+```
+    --> para a lógica da movimentação retrógrada, foi usada a variavel lado,
+    para conseguir manipular o movimento de maneira mais pratica, caso o lado
+    seja branco, a diferença_linha deve possuir um valor positivo, caso preto
+    deve possuir um valor negativo.
+
+    --> por fim é verificado se a posição final do peão está dentre ('⬜', '⬛'),
+    neste caso, se o movimento for vertical, sua condição veficara se a coordenada
+    de chegada esta fora de ('⬜', '⬛'), nesse caso ele não pode avançar. Se o
+    movimento for diagonal a coordenada de chegada deve obrigatoriamente estar
+    fora de ('⬜', '⬛'), pois o peão só se movimenta na diagonal para a captura
+    de uma peça. O resto do código é semelhante as funções de movimento
+    anteriormente apresentadas.
+
+def controlar_turno():
+    --> caso o movimento valido, o turno é alterado, caso contrario o return é
+    o valor original de lado, e eventualmente as requisições ao usuário são
+    realizadas novamente sem alterar o turno.
